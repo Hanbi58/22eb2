@@ -10,17 +10,12 @@ const GlobalStyles = createGlobalStyle`
 }
 
 body{
-    font-family:"Sirin Stencil";
     overflow-x: hidden;
-    background-color: black;
-}
-h1,h2,h3,h4,h5,h6{
-    margin: 0;
-    padding: 0;
+    background-color: #0F1014;
 }
 
+
 a{
-    color: inherit;
     text-decoration: none;
 }
 
