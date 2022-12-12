@@ -1,36 +1,47 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Herovideo from "../assets/hero/Hero_Video_clip.mp4";
-import HeroLogo from "../assets/hero/HeroLogo.svg";
+import HeroLogo from "../assets/hero/HeroLogo2.svg";
 const HeroContainer = styled.div`
   width: 100vw;
   height: 100vh;
 `;
 
+const scale = keyframes`
+  from {
+    height: 50%;
+  }
+
+  to {
+    height: 0;
+  }
+`;
+
 const HeroVideo = styled.div`
   position: relative;
-  top: 200px;
+  top: 50px;
   width: 80%;
+  height: 65%;
   margin: auto;
   color: white;
   video {
     width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 
   .blackout {
     position: absolute;
-    height: 500px;
+    height: 0;
     width: 100%;
-    background-color: #0f1014;
+    background-color: ${(props) => props.theme.bg};
     z-index: 1;
+    animation: ${scale} 2s linear;
   }
   .up {
     top: 0;
-    background-color: green;
   }
   .down {
     bottom: 0;
-    background-color: red;
   }
 `;
 
@@ -40,8 +51,8 @@ const Hero = () => {
       <div
         style={{
           background: `url(${HeroLogo}) center/cover`,
-          width: "100px",
-          height: "100px",
+          width: "80px",
+          height: "80px",
         }}
       ></div>
       <HeroVideo>

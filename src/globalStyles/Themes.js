@@ -1,4 +1,4 @@
-import "/font.css";
+import "./font.css";
 export const dark = {
   body: "#202020", // black shade
   text: "#fff",
@@ -6,7 +6,7 @@ export const dark = {
   textRgba: "255,255,255",
 
   grey: "#bebebe", // grey shade
-
+  bg: "#0F0F12",
   fontxs: "0.75em", //1em = 16px
   fontsm: "0.875em",
   fontmd: "1em",
