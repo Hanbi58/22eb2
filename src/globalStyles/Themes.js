@@ -1,3 +1,4 @@
+import "/font.css";
 export const dark = {
   body: "#202020", // black shade
   text: "#fff",
@@ -16,4 +17,8 @@ export const dark = {
   fontBig: "10em",
 
   navHeight: "5rem",
+  fontA: "'Archivo Black', sans-serif",
+  fontB: "'Cabin', sans-serif",
+  fontC: "'Oswald', sans-serif",
+  fontD: "'Red Hat Display', sans-serif",
 };
