@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
 body{
     overflow-x: hidden;
     background-color: ${(props) => props.theme.bg};
-    min-height:300vh;
+    /* min-height:3000vh; */
 }
 
 

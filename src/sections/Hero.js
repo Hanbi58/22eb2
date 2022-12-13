@@ -4,8 +4,8 @@ import HeroLogo from "../assets/hero/HeroLogo3.svg";
 import { motion } from "framer-motion";
 const HeroContainer = styled.div`
   width: 80vw;
-  height: 100vh;
-  margin: auto;
+  height: 110vh;
+  margin: 0 auto 50vh;
 `;
 
 const scale = keyframes`
@@ -20,11 +20,12 @@ const scale = keyframes`
 
 const HeroVideo = styled.div`
   position: relative;
-  top: 50px;
+  top: 30px;
   width: 100%;
-  height: 65%;
+  height: 60%;
   margin: auto;
   color: white;
+  z-index: 2;
   video {
     width: 100%;
     height: 100%;
@@ -47,7 +48,7 @@ const HeroVideo = styled.div`
   }
 `;
 
-const LogoComp = styled.div`
+const LogoComp = styled(motion.div)`
   position: relative;
   margin-top: 20px;
   height: 80px;
@@ -90,26 +91,54 @@ const LogoComp = styled.div`
   }
 `;
 
-const Embrace = styled(motion.dev)`
-  position: absolute;
-  bottom: 0;
+const Embrace = styled(motion.div)`
+  position: relative;
+  bottom: -4vw;
+  left: -5vw;
   h1 {
     color: ${(props) => props.theme.textLight};
-    font-family: ${(props) => props.theme.fontA};
+    font-family: ${(props) => props.theme.fontD};
     font-size: ${(props) => props.theme.fontBiger};
-    line-height: 70%;
+
+    line-height: 75%;
+    position: absolute;
+    z-index: 1;
+  }
+  h1 span {
+    position: relative;
+    /* left: -5rem; */
+    color: ${(props) => props.theme.orange};
   }
   h1:nth-of-type(2) {
+    z-index: 3;
     color: transparent;
-    -webkit-text-stroke-width: 5px;
+    -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: ${(props) => props.theme.textLight};
   }
+  h1:nth-of-type(2) span {
+    color: transparent;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: ${(props) => props.theme.orange};
+  }
 `;
+
+const embVariant = {
+  hide: { opacity: 0, y: 300 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { delay: 1, duration: 2 },
+  },
+};
 
 const Hero = () => {
   return (
     <HeroContainer>
-      <LogoComp>
+      <LogoComp
+        initial={{ y: -300 }}
+        animate={{ y: 0 }}
+        transition={{ delay: 2, duration: 1 }}
+      >
         <div></div>
         <div>
           <p>INTERDISCIPLINARY</p>
@@ -120,14 +149,35 @@ const Hero = () => {
         </div>
       </LogoComp>
 
-      <HeroVideo>
+      <HeroVideo data-scroll data-scroll-speed="-6">
         <div className="up blackout"></div>
         <video src={Herovideo} type="video/mp4" autoPlay muted loop />
         <div className="down blackout"></div>
       </HeroVideo>
-      <Embrace>
-        <h1>EMB&#x2022;RACE</h1>
-        <h1>EMB&#x2022;RACE</h1>
+      <Embrace
+        variants={embVariant}
+        initial="hide"
+        animate="show"
+        // data-scroll
+        // data-scroll-speed="-2"
+        // data-scroll-direction="horizontal"
+      >
+        <h1>
+          EMB
+          <span>
+            &#x2022;
+            <br />
+          </span>
+          RACE
+        </h1>
+        <h1>
+          EMB
+          <span>
+            &#x2022;
+            <br />
+          </span>
+          RACE
+        </h1>
       </Embrace>
     </HeroContainer>
   );
