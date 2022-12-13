@@ -1,9 +1,11 @@
 import styled, { keyframes } from "styled-components";
 import Herovideo from "../assets/hero/Hero_Video_clip.mp4";
-import HeroLogo from "../assets/hero/HeroLogo2.svg";
+import HeroLogo from "../assets/hero/HeroLogo3.svg";
+import { motion } from "framer-motion";
 const HeroContainer = styled.div`
-  width: 100vw;
+  width: 80vw;
   height: 100vh;
+  margin: auto;
 `;
 
 const scale = keyframes`
@@ -19,7 +21,7 @@ const scale = keyframes`
 const HeroVideo = styled.div`
   position: relative;
   top: 50px;
-  width: 80%;
+  width: 100%;
   height: 65%;
   margin: auto;
   color: white;
@@ -45,21 +47,88 @@ const HeroVideo = styled.div`
   }
 `;
 
+const LogoComp = styled.div`
+  position: relative;
+  margin-top: 20px;
+  height: 80px;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  div:nth-of-type(1) {
+    background: url(${HeroLogo}) center/cover;
+    width: 80px;
+    height: 100%;
+  }
+  div:nth-of-type(2) {
+    color: ${(props) => props.theme.textLight};
+    width: 300px;
+    height: 105%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    small {
+      position: absolute;
+      display: block;
+      top: 40%;
+      white-space: nowrap;
+      font-size: ${(props) => props.theme.fontxs};
+      font-family: ${(props) => props.theme.fontB};
+    }
+
+    p {
+      white-space: nowrap;
+      font-size: ${(props) => props.theme.fontlg};
+      font-family: ${(props) => props.theme.fontA};
+    }
+    p:nth-of-type(1),
+    p:nth-of-type(2) span {
+      color: transparent;
+      -webkit-text-stroke-width: 0.25px;
+      -webkit-text-stroke-color: ${(props) => props.theme.textLight};
+    }
+  }
+`;
+
+const Embrace = styled(motion.dev)`
+  position: absolute;
+  bottom: 0;
+  h1 {
+    color: ${(props) => props.theme.textLight};
+    font-family: ${(props) => props.theme.fontA};
+    font-size: ${(props) => props.theme.fontBiger};
+    line-height: 70%;
+  }
+  h1:nth-of-type(2) {
+    color: transparent;
+    -webkit-text-stroke-width: 5px;
+    -webkit-text-stroke-color: ${(props) => props.theme.textLight};
+  }
+`;
+
 const Hero = () => {
   return (
     <HeroContainer>
-      <div
-        style={{
-          background: `url(${HeroLogo}) center/cover`,
-          width: "80px",
-          height: "80px",
-        }}
-      ></div>
+      <LogoComp>
+        <div></div>
+        <div>
+          <p>INTERDISCIPLINARY</p>
+          <small>News Upcoming-Events Presentation Press</small>
+          <p>
+            <span>Fine art</span> SHOWROOM
+          </p>
+        </div>
+      </LogoComp>
+
       <HeroVideo>
         <div className="up blackout"></div>
         <video src={Herovideo} type="video/mp4" autoPlay muted loop />
         <div className="down blackout"></div>
       </HeroVideo>
+      <Embrace>
+        <h1>EMB&#x2022;RACE</h1>
+        <h1>EMB&#x2022;RACE</h1>
+      </Embrace>
     </HeroContainer>
   );
 };
