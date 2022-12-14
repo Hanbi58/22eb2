@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import { dark } from "./globalStyles/Themes";
-import { Hero, About } from "./sections";
+import { Hero, About, Chameleon } from "./sections";
 import { useRef } from "react";
 import { AnimatePresence } from "framer-motion";
 
@@ -24,6 +24,7 @@ function App() {
             <div data-scroll-container ref={containerRef}>
               <Hero />
               <About />
+              <Chameleon />
             </div>
           </AnimatePresence>
         </LocomotiveScrollProvider>
