@@ -1,18 +1,14 @@
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-const AboutContainer = styled(motion.section)`
-  min-height: 100vh;
+const AboutContainer = styled.section`
+  /* min-height: 100vh; */
   width: 80vw;
   margin: auto;
   color: white;
   overflow: visible;
-  /* background-color: red; */
 `;
 
 const BigText = styled.div`
-  /* margin-top: 5rem; */
   h1 {
     font-size: ${(props) => props.theme.fontBig};
     font-family: ${(props) => props.theme.fontA};
@@ -39,7 +35,7 @@ const BigText = styled.div`
 `;
 
 const BannerComponent = styled.h1`
-  font-size: ${(props) => props.theme.fontxxxl};
+  font-size: ${(props) => props.theme.fontxxl};
   color: ${(props) => props.theme.orange};
   line-height: 1;
 
@@ -50,26 +46,21 @@ const BannerComponent = styled.h1`
   }
 
   &:nth-of-type(3) {
-    margin-left: 40%;
+    margin-left: 35%;
   }
 `;
 const About = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref);
-  useEffect(() => {
-    console.log("Element is in view: ", isInView);
-  }, [isInView]);
   return (
     <AboutContainer>
-      <p id="#up">About</p>
+      <p>About</p>
       <BigText>
-        <h1 data-scroll data-scroll-speed="2" data-scroll-delay="0.15">
+        <h1 data-scroll data-scroll-speed="1" data-scroll-delay="0.15">
           The
           <span> Mission</span>
         </h1>
         <h1
           data-scroll
-          data-scroll-speed="6"
+          data-scroll-speed="-1"
           className="disappear"
           data-scroll-class="appear"
           data-scroll-repeat="true"
@@ -78,25 +69,25 @@ const About = () => {
           is to Spread
         </h1>
       </BigText>
-      <div ref={ref}>
+      <div>
         <BannerComponent
           data-scroll
           data-scroll-direction="horizontal"
-          data-scroll-speed="-12"
+          data-scroll-speed="-25"
         >
           <span>the</span> Beauty
         </BannerComponent>
         <BannerComponent
           data-scroll
           data-scroll-direction="horizontal"
-          data-scroll-speed="10"
+          data-scroll-speed="25"
         >
           <span>the</span> Truth
         </BannerComponent>
         <BannerComponent
           data-scroll
           data-scroll-direction="horizontal"
-          data-scroll-speed="-30"
+          data-scroll-speed="-40"
         >
           <span>the</span> Love
         </BannerComponent>
