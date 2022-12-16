@@ -1,1 +1,111 @@
 The MFA is open—to fresh ideas, all visitors, and the infinite possibilities inspired by art. Our renowned collection tells a multifaceted story of the human experience—a story that holds unique meaning for everyone. We look forward to seeing you soon!
+
+
+
+
+
+/**
+import styled from "styled-components";
+
+const AboutContainer = styled.section`
+  /* min-height: 100vh; */
+  width: 80vw;
+  margin: auto;
+  color: white;
+  overflow: visible;
+`;
+
+const BigText = styled.div`
+  h1 {
+    font-size: ${(props) => props.theme.fontBig};
+    font-family: ${(props) => props.theme.fontA};
+    color: ${(props) => props.theme.textLight};
+    text-align: right;
+  }
+  h1:nth-of-type(1) {
+    color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: ${(props) => props.theme.textLight};
+  }
+  span {
+    color: ${(props) => props.theme.orange};
+    -webkit-text-stroke-width: 0px;
+  }
+
+  .disappear {
+    opacity: 0;
+    transition: opacity 4s ease;
+  }
+  .appear {
+    opacity: 1;
+  }
+`;
+
+const BannerComponent = styled.h1`
+  font-size: ${(props) => props.theme.fontxxl};
+  color: ${(props) => props.theme.orange};
+  line-height: 1;
+
+  span {
+    color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: ${(props) => props.theme.textLight};
+  }
+
+  &:nth-of-type(3) {
+    margin-left: 35%;
+  }
+`;
+const About = () => {
+  return (
+    <AboutContainer>
+      <p>About</p>
+      <BigText>
+        <h1 data-scroll data-scroll-speed="1" data-scroll-delay="0.15">
+          The
+          <span> Mission</span>
+        </h1>
+        <h1
+          data-scroll
+          data-scroll-speed="-1"
+          className="disappear"
+          data-scroll-class="appear"
+          data-scroll-repeat="true"
+          data-scroll-delay="0.6"
+        >
+          is to Spread
+        </h1>
+      </BigText>
+      <div>
+        <BannerComponent
+          data-scroll
+          data-scroll-direction="horizontal"
+          data-scroll-speed="-25"
+        >
+          <span>the</span> Beauty
+        </BannerComponent>
+        <BannerComponent
+          data-scroll
+          data-scroll-direction="horizontal"
+          data-scroll-speed="25"
+        >
+          <span>the</span> Truth
+        </BannerComponent>
+        <BannerComponent
+          data-scroll
+          data-scroll-direction="horizontal"
+          data-scroll-speed="-40"
+        >
+          <span>the</span> Love
+        </BannerComponent>
+      </div>
+    </AboutContainer>
+  );
+};
+
+export default About;
+
+
+
+
+ **/

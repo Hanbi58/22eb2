@@ -8,7 +8,13 @@ const AboutContainer = styled.section`
   overflow: visible;
 `;
 
+const TextContainer = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
 const BigText = styled.div`
+  flex: 5;
   h1 {
     font-size: ${(props) => props.theme.fontBig};
     font-family: ${(props) => props.theme.fontA};
@@ -34,6 +40,11 @@ const BigText = styled.div`
   }
 `;
 
+const MidText = styled.div`
+  flex: 1;
+  align-self: flex-end;
+`;
+
 const BannerComponent = styled.h1`
   font-size: ${(props) => props.theme.fontxxl};
   color: ${(props) => props.theme.orange};
@@ -44,54 +55,52 @@ const BannerComponent = styled.h1`
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: ${(props) => props.theme.textLight};
   }
-
-  &:nth-of-type(3) {
-    margin-left: 35%;
-  }
 `;
 const About = () => {
   return (
     <AboutContainer>
       <p>About</p>
-      <BigText>
-        <h1 data-scroll data-scroll-speed="1" data-scroll-delay="0.15">
-          The
-          <span> Mission</span>
-        </h1>
-        <h1
-          data-scroll
-          data-scroll-speed="-1"
-          className="disappear"
-          data-scroll-class="appear"
-          data-scroll-repeat="true"
-          data-scroll-delay="0.6"
-        >
-          is to Spread
-        </h1>
-      </BigText>
-      <div>
-        <BannerComponent
-          data-scroll
-          data-scroll-direction="horizontal"
-          data-scroll-speed="-25"
-        >
-          <span>the</span> Beauty
-        </BannerComponent>
-        <BannerComponent
-          data-scroll
-          data-scroll-direction="horizontal"
-          data-scroll-speed="25"
-        >
-          <span>the</span> Truth
-        </BannerComponent>
-        <BannerComponent
-          data-scroll
-          data-scroll-direction="horizontal"
-          data-scroll-speed="-40"
-        >
-          <span>the</span> Love
-        </BannerComponent>
-      </div>
+      <TextContainer>
+        <MidText>
+          <BannerComponent
+            data-scroll
+            data-scroll-direction="horizontal"
+            data-scroll-speed="-5"
+          >
+            <span>the</span> Beauty
+          </BannerComponent>
+          <BannerComponent
+            data-scroll
+            data-scroll-direction="horizontal"
+            data-scroll-speed="-3"
+          >
+            <span>the</span> Truth
+          </BannerComponent>
+          <BannerComponent
+            data-scroll
+            data-scroll-direction="horizontal"
+            data-scroll-speed="-1"
+          >
+            <span>the</span> Love
+          </BannerComponent>
+        </MidText>
+        <BigText>
+          <h1 data-scroll data-scroll-speed="2" data-scroll-delay="0.15">
+            The
+            <span> Mission</span>
+          </h1>
+          <h1
+            data-scroll
+            // data-scroll-speed="-1"
+            className="disappear"
+            data-scroll-class="appear"
+            data-scroll-repeat="true"
+            data-scroll-delay="0.6"
+          >
+            is to Spread
+          </h1>
+        </BigText>
+      </TextContainer>
     </AboutContainer>
   );
 };
