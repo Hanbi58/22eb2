@@ -1,3 +1,5 @@
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import styled from "styled-components";
 
 const AboutContainer = styled.section`
@@ -11,6 +13,7 @@ const AboutContainer = styled.section`
 const TextContainer = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
 `;
 
 const BigText = styled.div`
@@ -30,7 +33,6 @@ const BigText = styled.div`
     color: ${(props) => props.theme.orange};
     -webkit-text-stroke-width: 0px;
   }
-
   .disappear {
     opacity: 0;
     transition: opacity 4s ease;
@@ -40,50 +42,31 @@ const BigText = styled.div`
   }
 `;
 
-const MidText = styled.div`
+const MidText = styled(motion.div)`
   flex: 1;
-  align-self: flex-end;
+  align-self: center;
 `;
 
-const BannerComponent = styled.h1`
+const BannerComponent = styled(motion.h1)`
   font-size: ${(props) => props.theme.fontxxl};
-  color: ${(props) => props.theme.orange};
+  color: ${(props) => props.theme.textLight};
   line-height: 1;
-
   span {
     color: transparent;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: ${(props) => props.theme.textLight};
   }
+  big {
+    color: ${(props) => props.theme.orange};
+  }
 `;
 const About = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false });
   return (
     <AboutContainer>
       <p>About</p>
       <TextContainer>
-        <MidText>
-          <BannerComponent
-            data-scroll
-            data-scroll-direction="horizontal"
-            data-scroll-speed="-5"
-          >
-            <span>the</span> Beauty
-          </BannerComponent>
-          <BannerComponent
-            data-scroll
-            data-scroll-direction="horizontal"
-            data-scroll-speed="-3"
-          >
-            <span>the</span> Truth
-          </BannerComponent>
-          <BannerComponent
-            data-scroll
-            data-scroll-direction="horizontal"
-            data-scroll-speed="-1"
-          >
-            <span>the</span> Love
-          </BannerComponent>
-        </MidText>
         <BigText>
           <h1 data-scroll data-scroll-speed="2" data-scroll-delay="0.15">
             The
@@ -91,7 +74,7 @@ const About = () => {
           </h1>
           <h1
             data-scroll
-            // data-scroll-speed="-1"
+            data-scroll-speed="4"
             className="disappear"
             data-scroll-class="appear"
             data-scroll-repeat="true"
@@ -100,6 +83,22 @@ const About = () => {
             is to Spread
           </h1>
         </BigText>
+        <MidText data-scroll data-scroll-speed="6">
+          <BannerComponent
+            // data-scroll
+            // data-scroll-direction="horizontal"
+            // data-scroll-speed="-9"
+            ref={ref}
+            style={{
+              transform: isInView ? "none" : "translateY(100px)",
+              opacity: isInView ? 1 : 0,
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+            }}
+          >
+            <span>The</span> Truth <span>The</span> Beauty <span>The</span>
+            <big> Love</big>
+          </BannerComponent>
+        </MidText>
       </TextContainer>
     </AboutContainer>
   );

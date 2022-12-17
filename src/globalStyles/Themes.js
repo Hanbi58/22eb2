@@ -8,6 +8,7 @@ export const dark = {
 
   grey: "#bebebe", // grey shade
   bg: "#0F0F12",
+  bgLight: "#e7ecef",
   orange: "#FFC700",
   fontxs: "0.5rem", //1em = 16px
   fontsm: "0.875em",
