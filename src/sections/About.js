@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import styled from "styled-components";
 
@@ -10,7 +10,7 @@ const AboutContainer = styled.section`
   overflow: visible;
 `;
 
-const TextContainer = styled.div`
+const TextContainer = styled(motion.div)`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -51,6 +51,7 @@ const BannerComponent = styled(motion.h1)`
   font-size: ${(props) => props.theme.fontxxl};
   color: ${(props) => props.theme.textLight};
   line-height: 1;
+
   span {
     color: transparent;
     -webkit-text-stroke-width: 1px;
@@ -62,37 +63,41 @@ const BannerComponent = styled(motion.h1)`
 `;
 const About = () => {
   const ref = useRef(null);
+  const pageRef = useRef(null);
   const isInView = useInView(ref, { once: false });
+
+  let { scrollYProgress } = useScroll();
   return (
-    <AboutContainer>
+    <AboutContainer ref={pageRef}>
       <p>About</p>
       <TextContainer>
         <BigText>
-          <h1 data-scroll data-scroll-speed="2" data-scroll-delay="0.15">
+          <motion.h1
+            style={{
+              y: useTransform(scrollYProgress, [0, 1], ["0%", "-200%"]),
+            }}
+          >
             The
             <span> Mission</span>
-          </h1>
-          <h1
-            data-scroll
-            data-scroll-speed="4"
-            className="disappear"
-            data-scroll-class="appear"
-            data-scroll-repeat="true"
-            data-scroll-delay="0.6"
+          </motion.h1>
+          <motion.h1
+            style={{
+              opacity: isInView ? 1 : 0,
+              transition: "all 1s cubic-bezier(0.17, 0.55, 0.55, 1)",
+              y: useTransform(scrollYProgress, [0, 1], ["0%", "-250%"]),
+            }}
           >
             is to Spread
-          </h1>
+          </motion.h1>
         </BigText>
-        <MidText data-scroll data-scroll-speed="6">
+        <MidText>
           <BannerComponent
-            // data-scroll
-            // data-scroll-direction="horizontal"
-            // data-scroll-speed="-9"
             ref={ref}
             style={{
               transform: isInView ? "none" : "translateY(100px)",
               opacity: isInView ? 1 : 0,
               transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+              y: useTransform(scrollYProgress, [0, 1], ["0%", "-1000%"]),
             }}
           >
             <span>The</span> Truth <span>The</span> Beauty <span>The</span>

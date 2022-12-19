@@ -1,44 +1,105 @@
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import ChameleonInner from "../components/ChameleonInner";
 import styled from "styled-components";
+import TreeImg from "../assets/palm/tree.png";
 
 const Container = styled.div`
   position: relative;
   margin: auto;
-  width: 80vw;
-  min-height: 200vh;
-  /* background-color: ${(props) => props.theme.bgLight}; */
+  width: 100vw;
+  min-height: 100vh;
+  z-index: -2;
+  background-color: ${(props) => props.theme.bgLight};
+  overflow: hidden;
+  /* background-color: red; */
 `;
 
-const ChameleonBg = styled.div`
+const ChameleonBg = styled(motion.div)`
   width: 100vw;
   min-height: 100vh;
   position: absolute;
-  left: -10vw;
-  background-color: ${(props) => props.theme.bgLight};
+  top: 0;
+  z-index: -1;
+  /* left: -10vw; */
+  /* background-color: ${(props) => props.theme.bgLight}; */
 `;
 
-const ChameleonInner = styled.div`
-  width: 100%;
-  height: 11vh;
-  background-color: ${(props) => props.theme.bg};
+const MainText = styled.p`
+  color: white;
+  z-index: 1;
+  font-family: ${(props) => props.theme.fontB};
+  font-size: ${(props) => props.theme.fontxxl};
+  mix-blend-mode: exclusion;
+  max-width: 60vw;
+  margin-left: 10vw;
+  line-height: 1.5;
 `;
+
+const SecText = styled.p`
+  color: white;
+  z-index: 1;
+  font-family: ${(props) => props.theme.fontD};
+  font-size: ${(props) => props.theme.fontxxxl};
+  mix-blend-mode: exclusion;
+  max-width: 60vw;
+  position: absolute;
+  bottom: 1vw;
+  left: 10vw;
+`;
+
+const TreeImgContainer = styled.div`
+  width: 60vw;
+  height: 100vh;
+  position: absolute;
+  right: -10vw;
+  top: 10%;
+  /* transform: translateX(-10%); */
+  background: center/contain no-repeat url(${(props) => props.imgsrc});
+  filter: invert();
+  /* opacity: 0.85; */
+  mix-blend-mode: difference;
+`;
+
+const dat = new Date();
+dat.setDate(dat.getDate() + ((1 + 7 - dat.getDay()) % 7 || 7));
 
 const Chameleon = () => {
+  // const chamRef = useRef(null);
+  // let y = useTransform(scrollYProgress, [0, 100], ["0%", "100%"]);
+
   return (
     <Container>
+      <MainText>
+        “Something that is created with imagination and skill and that is
+        beautiful.” Often, art is defined by its origin in the human mind.
+        Imagination plays a key role in making any piece of art. Some people
+        think of art as what happens when your creativity takes solid form. Art
+        in any form is an expression or application of human creativity, skill,
+        and imagination.
+      </MainText>
+      <TreeImgContainer imgsrc={TreeImg} />
+      <SecText>
+        Next week new in house.
+        <br />
+        <small id="cham">Starts{` ${dat.toDateString()}`}</small>
+      </SecText>
       <ChameleonBg>
-        <ChameleonInner />
-        <ChameleonInner />
-        <ChameleonInner />
-        <ChameleonInner />
-        <ChameleonInner />
-        <ChameleonInner />
-        <ChameleonInner />
-        <ChameleonInner />
-        <ChameleonInner />
-        <ChameleonInner />
+        {[...Array(20)].map((n, i) => (
+          <ChameleonInner key={`${i}`} />
+        ))}
       </ChameleonBg>
     </Container>
   );
 };
 
 export default Chameleon;
+
+var canMakeArithmeticProgression = function (arr) {
+  arr.sort((a, b) => a - b);
+  let cur = arr[1] - arr[0];
+  for (let i = 2; i < arr.length; i++) {
+    if (arr[i] - arr[i - 1] !== cur) return false;
+  }
+  return true;
+};

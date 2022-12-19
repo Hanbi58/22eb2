@@ -1,7 +1,8 @@
 import styled, { keyframes } from "styled-components";
 import Herovideo from "../assets/hero/Hero_Video_clip.mp4";
 import HeroLogo from "../assets/hero/HeroLogo3.svg";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 const HeroContainer = styled.div`
   width: 80vw;
   height: 110vh;
@@ -18,7 +19,7 @@ const scale = keyframes`
   }
 `;
 
-const HeroVideo = styled.div`
+const HeroVideo = styled(motion.div)`
   position: relative;
   top: 30px;
   width: 100%;
@@ -121,7 +122,14 @@ const Embrace = styled(motion.div)`
     -webkit-text-stroke-color: ${(props) => props.theme.orange};
   }
 `;
-
+const logoVariant = {
+  hide: { opacity: 0, y: "-50%" },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { delay: 2, duration: 1 },
+  },
+};
 const embVariant = {
   hide: { opacity: 0, y: 300 },
   show: {
@@ -132,13 +140,15 @@ const embVariant = {
 };
 
 const Hero = () => {
+  const headerRef = useRef(null);
+  let { scrollYProgress } = useScroll({
+    target: headerRef,
+    offset: ["start start", "end start"],
+  });
+
   return (
-    <HeroContainer>
-      <LogoComp
-        initial={{ y: -300 }}
-        animate={{ y: 0 }}
-        transition={{ delay: 2, duration: 1 }}
-      >
+    <HeroContainer id="hero">
+      <LogoComp variants={logoVariant} initial="hide" animate="show">
         <div></div>
         <div>
           <p>INTERDISCIPLINARY</p>
@@ -149,19 +159,15 @@ const Hero = () => {
         </div>
       </LogoComp>
 
-      <HeroVideo data-scroll data-scroll-speed="-6">
+      <HeroVideo
+        ref={headerRef}
+        style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "72%"]) }}
+      >
         <div className="up blackout"></div>
         <video src={Herovideo} type="video/mp4" autoPlay muted loop />
         <div className="down blackout"></div>
       </HeroVideo>
-      <Embrace
-        variants={embVariant}
-        initial="hide"
-        animate="show"
-        // data-scroll
-        // data-scroll-speed="-2"
-        // data-scroll-direction="horizontal"
-      >
+      <Embrace variants={embVariant} initial="hide" animate="show">
         <h1>
           EMB
           <span>
