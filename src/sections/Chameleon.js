@@ -31,13 +31,15 @@ const MainText = styled.p`
   font-family: ${(props) => props.theme.fontB};
   font-size: ${(props) => props.theme.fontxxl};
   mix-blend-mode: exclusion;
-  max-width: 60vw;
+  max-width: 75vw;
   margin-left: 10vw;
   line-height: 1.5;
+  letter-spacing: 0.2rem;
 `;
 
 const SecText = styled.p`
   color: white;
+
   z-index: 1;
   font-family: ${(props) => props.theme.fontD};
   font-size: ${(props) => props.theme.fontxxxl};
@@ -46,6 +48,10 @@ const SecText = styled.p`
   position: absolute;
   bottom: 1vw;
   left: 10vw;
+  small {
+    color: ${(props) => props.theme.orange};
+    filter: invert();
+  }
 `;
 
 const TreeImgContainer = styled.div`
@@ -62,10 +68,10 @@ const TreeImgContainer = styled.div`
 `;
 
 const dat = new Date();
-dat.setDate(dat.getDate() + ((1 + 7 - dat.getDay()) % 7 || 7));
+dat.setDate(dat.getDate() + ((8 - dat.getDay()) % 7 || 7));
 
 const Chameleon = () => {
-  // const chamRef = useRef(null);
+  const chamRef = useRef(null);
   // let y = useTransform(scrollYProgress, [0, 100], ["0%", "100%"]);
 
   return (
@@ -82,11 +88,11 @@ const Chameleon = () => {
       <SecText>
         Next week new in house.
         <br />
-        <small id="cham">Starts{` ${dat.toDateString()}`}</small>
+        <small ref={chamRef}>Starts{` ${dat.toDateString()}`}</small>
       </SecText>
       <ChameleonBg>
-        {[...Array(20)].map((n, i) => (
-          <ChameleonInner key={`${i}`} />
+        {[...Array(10)].map((n, i) => (
+          <ChameleonInner refComp={chamRef} key={`${i}`} />
         ))}
       </ChameleonBg>
     </Container>
@@ -94,12 +100,3 @@ const Chameleon = () => {
 };
 
 export default Chameleon;
-
-var canMakeArithmeticProgression = function (arr) {
-  arr.sort((a, b) => a - b);
-  let cur = arr[1] - arr[0];
-  for (let i = 2; i < arr.length; i++) {
-    if (arr[i] - arr[i - 1] !== cur) return false;
-  }
-  return true;
-};

@@ -9,16 +9,16 @@ const ChameleonInnerSec = styled(motion.div)`
   /* background-color: transparent; */
 `;
 
-const ChameleonInner = () => {
+const ChameleonInner = (props) => {
   let { scrollYProgress } = useScroll({
-    target: "#cham",
-    offset: ["start start", "end end"],
+    target: props.refComp,
+    // offset: ["start start", "start start "],
   });
 
   return (
     <ChameleonInnerSec
       style={{
-        scaleY: useTransform(scrollYProgress, [0.9, 1], [1, 0]),
+        scaleY: useTransform(scrollYProgress, [0.9, 1], [0, 1.01]),
       }}
     />
   );
