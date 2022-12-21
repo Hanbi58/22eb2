@@ -6,8 +6,30 @@ const ShowNextContainer = styled.div`
   background-color: ${(props) => props.theme.bgLight};
 `;
 
+const InnerContainer = styled.div`
+  width: 80vw;
+  min-height: 100vh;
+  margin: auto;
+  background-color: red;
+`;
+
+const contents = [
+  {
+    title: "",
+    artist: "",
+    artistUrl: "",
+    overview: "",
+    statement: "",
+    imgUrl: {},
+  },
+];
+
 const ShowNext = () => {
-  return <ShowNextContainer>ShowNext</ShowNextContainer>;
+  return (
+    <ShowNextContainer>
+      <InnerContainer></InnerContainer>
+    </ShowNextContainer>
+  );
 };
 
 export default ShowNext;
