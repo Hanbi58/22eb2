@@ -1,5 +1,6 @@
 import styled from "styled-components";
-
+import RollingSlice from "../components/RollingSlice";
+import { contents } from "../assets";
 const ShowNextContainer = styled.div`
   width: 100vw;
   min-height: 100vh;
@@ -13,21 +14,14 @@ const InnerContainer = styled.div`
   background-color: red;
 `;
 
-const contents = [
-  {
-    title: "",
-    artist: "",
-    artistUrl: "",
-    overview: "",
-    statement: "",
-    imgUrl: {},
-  },
-];
-
 const ShowNext = () => {
   return (
     <ShowNextContainer>
-      <InnerContainer></InnerContainer>
+      <InnerContainer>
+        {contents.map((content, idx) => (
+          <RollingSlice content={content} key={idx} />
+        ))}
+      </InnerContainer>
     </ShowNextContainer>
   );
 };
