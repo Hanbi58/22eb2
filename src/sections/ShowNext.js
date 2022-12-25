@@ -11,10 +11,11 @@ const InnerContainer = styled.div`
   width: 80vw;
   min-height: 100vh;
   margin: auto;
-  background-color: red;
+  /* background-color: red; */
 `;
 
 const ShowNext = () => {
+  console.log(contents);
   return (
     <ShowNextContainer>
       <InnerContainer>
